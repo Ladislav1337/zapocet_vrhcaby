@@ -4,6 +4,7 @@ from zeton import Zeton
 from hrac import Hrac
 from kostky import Kostky
 from ui import UI
+from tah import Tah
 
 class Engine:
 #Zvládání herní logiky, víceméně propojování těch tříd aby to dělalo tu hru
@@ -60,17 +61,58 @@ class Engine:
         return tahy
 
     def bar_tahy(self, hrac_id):
-        pass
+        vysledek = []
+        for cislo in self._kostka:
+            if(self.vrat_hrace(hrac_id).strana == "nahoru"):
+                pol = self.najdi_pole(24-cislo)
+            else:
+                pol = self.najdi_pole(-1+cislo)
+            if pol.je_volno(hrac_id):
+                vysledek.append(Tah("Hřbitov", pol.x, cislo))
+            return vysledek
     
     def domek_tahy(self, hrac_id):
-        pass
+        vysledek = []
+        #for cislo in self._kostka:
+
+        return vysledek
     
     def overall_tahy(self, hrac_id):
-        pass
+        vysledek = []
+
+        return vysledek
     
     def zetony_hrace(self, hrac_id):
         pass
     
+    def kontrola_domku(self, hrac_id):
+        for pole in self._deska:
+            if self.vrat_hrace(hrac_id).strana == "nahoru":
+                if pole.x > 5 and pole.aktivni_zeton() != None and pole.aktivni_zeton().hrac_id == hrac_id:
+                    return False
+            else:
+                if pole.x < 18 and pole.aktivni_zeton() != None and pole.aktivni_zeton().hrac_id == hrac_id:
+                    return False
+        return True
+        
+    def hracovi_figurky(self, hrac_id):
+        zetony = []
+        for pole in self._deska:
+            for zeton in pole:
+                if zeton.hrac_id == hrac_id:
+                    zetony.append(zeton)
+        return zetony
+
+
+    def vrat_hrace(self, hrac_id):
+        for hrac in self._hraci:
+            if hrac.id == hrac_id:
+                return hrac
+
+    def najdi_pole(self, x):
+        for pole in self._deska:
+            if pole.x == x:
+                return pole
     
 ##########  inicializace ###############
     def napln_desku(self):
