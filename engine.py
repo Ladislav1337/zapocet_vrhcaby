@@ -35,6 +35,7 @@ class Engine:
         self.vytvor_hrace()
         self.napln_desku()
         self.defaultni_zetony()
+        self._aktivni_hrac_id = self._hraci[0]
     
     def vykresleni_stavu(self):
         self._ui.nakresli_desku(self._deska)
@@ -44,7 +45,13 @@ class Engine:
     
     def vytvor_tahy(self):
         self._mozne_tahy = self.tahy_hrace(self._aktivni_hrac_id)
-    
+        if len(self._mozne_tahy) < 1:
+            self.vymen_hrace()
+            
+    def vymen_hrace(self):
+        self._aktivni_hrac_id = self._hraci[(self._hraci.index(self._aktivni_hrac_id) + 1) % len(self._hraci)] # swapuje [0] a [1]
+        self.hod_kostky()
+        self.vytvor_tahy()
     
 ##########  tahování     ###############
     def tahy_hrace(self, hrac_id):

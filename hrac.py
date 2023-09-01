@@ -1,9 +1,10 @@
 class Hrac:
 
-    def __init__(self, jmeno, id):
+    def __init__(self, jmeno, id, strana):
         self._jmeno = jmeno
         self._id = id
         self._domek = 0
+        self._strana=strana
 
     @property
     def id(self):
@@ -16,6 +17,10 @@ class Hrac:
     @property
     def domek(self):
         return self._domek
+
+    @domek.setter
+    def domek(self, value):
+        self._domek = value
 
 
 
