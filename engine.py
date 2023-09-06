@@ -125,8 +125,10 @@ class Engine:
     def proved_tah_domek(self, tah):
         zet = self.najdi_zeton(tah.zacatek)
         self.najdi_hrace(zet.hrac_id).domek += 1
+        print(f"Player {zet.hrac_id} má v domku {self.najdi_hrace(zet.hrac_id).domek}.")
         self.najdi_pole(tah.zacatek).odeber_zeton()
-    
+        
+
     def proved_tah_normal(self, tah):
         zeton = self.najdi_zeton(tah.zacatek)
         pole_puvodni = self.najdi_pole(tah.zacatek)
