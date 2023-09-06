@@ -79,7 +79,7 @@ class Engine:
     #provedení vybraného tahu
     def tah_provedeni(self, tah):
         self.clear_console()  # Vymaže obsah konzole
-        print(f"Player {self._aktivni_hrac.id} má v domku {self._aktivni_hrac.id}.")
+        print(f"Player {self._aktivni_hrac.id} má v domku {self.najdi_hrace(self._aktivni_hrac.id).domek}.")
         if tah.zacatek == "bar":
             self.proved_tah_bar(tah)
             print(f"Player {self._aktivni_hrac.id} hnul z baru na pole {tah.cil}.")
