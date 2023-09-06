@@ -79,6 +79,7 @@ class Engine:
     #provedení vybraného tahu
     def tah_provedeni(self, tah):
         self.clear_console()  # Vymaže obsah konzole
+        print(f"Player {self._aktivni_hrac.id} má v domku {self._aktivni_hrac.id}.")
         if tah.zacatek == "bar":
             self.proved_tah_bar(tah)
             print(f"Player {self._aktivni_hrac.id} hnul z baru na pole {tah.cil}.")
@@ -125,7 +126,6 @@ class Engine:
     def proved_tah_domek(self, tah):
         zet = self.najdi_zeton(tah.zacatek)
         self.najdi_hrace(zet.hrac_id).domek += 1
-        print(f"Player {zet.hrac_id} má v domku {self.najdi_hrace(zet.hrac_id).domek}.")
         self.najdi_pole(tah.zacatek).odeber_zeton()
         
 
